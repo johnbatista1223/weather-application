@@ -1,0 +1,13 @@
+*{
+  margin: 0;
+}
+.head{
+  background-color: rgb(15, 15, 15);
+  color: white;
+  text-align: center;
+  height: 70px;
+  font-size: 50px;
+}
+.custom-row{
+  margin-left: 10px;
+}

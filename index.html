@@ -1,0 +1,78 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>weather app</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header class="head">WEATHER DASHBOARD</header>
+
+  <div class="row content-row custom-row">
+    <div class="col-11 col-md-3 ">
+      <h3>Search for a city:</h3>
+      <form class="d-flex">
+        <input class="form-control me-2 city-search" type="text" placeholder="Search" aria-label="Search">
+
+        <button class="btn btn-primary" type="submit" value="submit" id="search-btn">Search</button>
+      </form>
+      <br>
+      <ol class="list-group list-group-numbered">
+        <li class="list-group-item">Cras justo odio</li>
+        <li class="list-group-item">Cras justo odio</li>
+        <li class="list-group-item">Cras justo odio</li>
+        <li class="list-group-item">Cras justo odio</li>
+        <li class="list-group-item">Cras justo odio</li>
+      </ol>
+      <br>
+      <button id="clear-history" class="btn btn-primary">Clear History</button>
+    </div>
+
+    <div id="city-display" class="col-11 col-md-9">
+      <div class="row">
+        <div class="col-12">
+          <div class="city-info border rounded my-2 m-3 my-2">
+            <h2 id="current-city">City Information <span id="current-date"></span>
+            </h2>
+            <p class="card-text">Temperature: <span id="temp"></span></p>
+            <p class="card-text">Humidity: <span id="humidity"></span></p>
+            <p class="card-text">Wind Speed: <span id="wind-speed"></span></p>
+            <p class="card-text">UV index: <span id="uv-index"></span></p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <h3>5-Day Forecast</h3>
+
+        </div>
+      </div>
+      <div id="five-day-forecast" class="row">
+        <div class="col-3">
+          <div class="card">
+            <div class="card-body"></div>
+              <h5 class="card-title">Date</h5>
+              <p class="card-text">Temperature: </p>
+              <p class="card-text">Humidity: </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
