@@ -23,17 +23,20 @@ var uvIndex = document.querySelector('#uv-index');
 function displayCity(){
 	var cityDisplay = document.querySelector('.city-search').value;
 	currentCity.innerText = cityDisplay;
+	var dt = new Date();
+	var newDate = dt.toLocaleDateString();
+	var newElement = document.querySelector('#current-city');
+	var newSpan = document.createElement('SPAN');
+	newSpan.setAttribute("id", "current-date");
+	newSpan.textContent = newDate;
+	newElement.appendChild(newSpan);
 	
 }
 
-function displayDate(){
- var dt = new Date();
-document.getElementById("current-date").innerHTML = (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (("0"+dt.getDate()).slice(-2)) +"/"+ (dt.getFullYear());
- }
 
- displayDate()
 
  
+
  
   
  
