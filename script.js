@@ -41,10 +41,10 @@ var uvIndex = document.querySelector('#uv-index');
 	 windEl.appendChild(windSpan);
 	 var long = data.coord.lon;
 	 var latitude = data.coord.lat;
-	 console.log(long)
-	 console.log(latitude)
-	//  uvIndex(long,latitude);
+	//  console.log(long);
+	//  console.log(latitude);
 	 getForcast()
+	 getUvIndex(long,latitude);
 	 
 	})
 	displayCity()
@@ -100,11 +100,19 @@ function displayCity(){
 	newElement.appendChild(newSpan);
 }
 
-// function uvIndex(long,latitude){
-// 	var indexUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=33.441792&lon=-94.037689&exclude=hourly,daily&appid=3da63bc31a4354e809cc481ffd9df64'
-//  console.log()
+ function getUvIndex(long,latitude){
 
-// }
+	 fetch('https://api.openweathermap.org/data/2.5/onecall?lat='+long+'&'+latitude+'&appid=63da63bc31a4354e809cc481ffd9df64')
+  .then(response => response.json())
+  .then(data => {
+		console.log(data)
+	});
+
+
+	 
+
+
+}
 
 
 
