@@ -1,4 +1,4 @@
-//city api
+
 var inputBox = document.querySelector('.city-search');
 var searchBtn = document.querySelector('#search-btn');
 var clearBtn = document.querySelector('#clear-history');
@@ -64,14 +64,17 @@ function getForcast(){
 		document.getElementById('five-day-forecast').innerHTML = '';
 		for (let i = 0; i < data.list.length; i+=8) {
 			const newData = data.list[i];
+			var iconIndex = data.weather[0].icon;
+			
+
 			console.log(newData);
-			makeForcastCard(newData)
+			makeForcastCard(newData,iconIndex);
 		}
 console.log(data)
 	})	
 }
 
-function makeForcastCard(newData){
+function makeForcastCard(newData,iconIndex){
 	var fiveDayForcast = document.getElementById('five-day-forecast');
 	var newElement1Div = document.createElement('div');
 	newElement1Div.setAttribute('class','col-3 col-md-2');
@@ -80,6 +83,10 @@ function makeForcastCard(newData){
 	var newElementH5 = document.createElement('h5');
 	newElementH5.setAttribute('class','card-title');
 	newElementH5.textContent = 'Date:' + newData.dt_txt;
+	var elementIcon = 'https://openweathermap.org/img/w/'+ iconIndex +'.png';
+	var iconImg = document.createElement('img');
+	iconImg.setAttribute('src', iconIndex);
+	iconImg.innerHTML = elementIcon;
 	var newElementP1 = document.createElement('p');
 	newElementP1.setAttribute('class','card-text');
 	newElementP1.textContent = 'Temperature:' + newData.main.temp +'°F';
@@ -87,25 +94,27 @@ function makeForcastCard(newData){
 	newElementP2.setAttribute('class','card-text');
 	newElementP2.textContent = 'Humidity:' + newData.main.humidity + '%';
 	
-
+	
 	newElement2Div.appendChild(newElementH5);
+	newElement2Div.appendChild(iconImg);
 	newElement2Div.appendChild(newElementP1);
 	newElement2Div.appendChild(newElementP2)
 
 	newElement1Div.appendChild(newElement2Div);
-fiveDayForcast.appendChild(newElement1Div);
+	fiveDayForcast.appendChild(newElement1Div);
 }
 
 function displayCity(weatherIcon){
-	//fix
-	var weather = 'https://openweathermap.org/img/'+ weatherIcon +'.png'
+
+	var weather = 'https://openweathermap.org/img/w/'+ weatherIcon +'.png';
+	console.log(weather);
 	var cityDisplay = document.querySelector('.city-search').value;
 	currentCity.innerText = cityDisplay;
 	var dt = new Date();
 	var newDate = dt.toLocaleDateString();
 	var newElement = document.querySelector('#current-city');
-	var newSpan = document.createElement('SPAN');
-	newSpan.setAttribute("id", "current-date");
+	var newSpan = document.createElement('img');
+	newSpan.setAttribute('src', weather );
 	newSpan.innerHTML = ' (' + newDate + ')' + weather;
 	newElement.appendChild(newSpan);
 }
@@ -141,4 +150,3 @@ function displayCity(weatherIcon){
 //local storage
 // elevenPm.val(localStorage.getItem('11-pm'));
 // list items
-// icons
