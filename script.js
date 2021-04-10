@@ -53,6 +53,7 @@ var uvIndex = document.querySelector('#uv-index');
 	 getForcast()
 	 getUvIndex(long,latitude);
 	 displayCity(weatherIcon)
+	 listItems()
 	})
 	
 })
@@ -64,25 +65,26 @@ function getForcast(){
 		document.getElementById('five-day-forecast').innerHTML = '';
 		for (let i = 0; i < data.list.length; i+=8) {
 			const newData = data.list[i];
+			var iconIndex = newData.weather[0].icon;
 			console.log(newData);
-			makeForcastCard(newData);
+			makeForcastCard(newData,iconIndex);
 		}
 console.log(data)
 	})	
 }
 
-function makeForcastCard(newData){
+function makeForcastCard(newData,iconIndex){
 	var fiveDayForcast = document.getElementById('five-day-forecast');
 	var newElement1Div = document.createElement('div');
-	newElement1Div.setAttribute('class','col-3 col-md-2');
+	newElement1Div.setAttribute('class','col-2 col-md-2');
 	var newElement2Div = document.createElement('div');
 	newElement2Div.setAttribute('class','card');
 	var newElementH5 = document.createElement('h5');
 	newElementH5.setAttribute('class','card-title');
 	newElementH5.textContent = 'Date:' + newData.dt_txt;
-	// var iconImg = document.createElement('img');
-	// iconImg.setAttribute('src', iconIndex);
-	// iconImg.innerHTML = elementIcon;
+	 var iconImg = document.createElement('img');
+	 var iconString = 'https://openweathermap.org/img/w/'+ iconIndex +'.png';
+	 iconImg.setAttribute('src', iconString);
 	var newElementP1 = document.createElement('p');
 	newElementP1.setAttribute('class','card-text');
 	newElementP1.textContent = 'Temperature:' + newData.main.temp +'°F';
@@ -92,7 +94,7 @@ function makeForcastCard(newData){
 	
 	
 	newElement2Div.appendChild(newElementH5);
-	// newElement2Div.appendChild(iconImg);
+	newElement2Div.appendChild(iconImg);
 	newElement2Div.appendChild(newElementP1);
 	newElement2Div.appendChild(newElementP2)
 
@@ -130,6 +132,16 @@ function displayCity(weatherIcon){
 
 		console.log(data)
 	});
+
+}
+function listItems(){
+	var listElement = document.querySelector('.list-group list-group-numbered');
+	var inputElement = document.querySelector('.city-search').value;
+	var li = document.createElement('li');
+	li.setAttribute('class', 'list-group-item');
+	li.textContent = inputElement;
+	listElement.appendChild(li);
+ 
 
 }
 

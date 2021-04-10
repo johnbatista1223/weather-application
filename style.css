@@ -2,8 +2,8 @@
   margin: 0;
 }
 .head{
-  background-color: rgb(15, 15, 15);
-  color: white;
+  background-color: rgb(180, 80, 80);
+  color: rgb(255, 255, 255);
   text-align: center;
   height: 70px;
   font-size: 50px;
@@ -12,5 +12,11 @@
   margin-left: 10px;
 }
 body{
-  background-color:rgb(145, 145, 165) ;
+  background-color:rgb(46, 106, 196) ;
+}
+.custom-color{
+  color: white;
+}
+h3{
+  color: white;
 }
