@@ -54,6 +54,7 @@ function getForcast(){
 	fetch('https://api.openweathermap.org/data/2.5/forecast?q='+inputBox.value+'&units=imperial&appid=63da63bc31a4354e809cc481ffd9df64')
 	.then(response => response.json())
 	.then(data => {
+		document.getElementById('five-day-forecast').innerHTML = '';
 		for (let i = 0; i < data.list.length; i+=8) {
 			const newData = data.list[i];
 			console.log(newData);
@@ -64,6 +65,7 @@ console.log(data)
 }
 
 function makeForcastCard(newData){
+	var fiveDayForcast = document.getElementById('five-day-forecast');
 	var newElement1Div = document.createElement('div');
 	newElement1Div.setAttribute('class','col-3 col-md-2');
 	var newElement2Div = document.createElement('div');
@@ -115,6 +117,7 @@ function displayCity(){
 
 		console.log(data)
 	});
+
 }
 
 
