@@ -64,17 +64,14 @@ function getForcast(){
 		document.getElementById('five-day-forecast').innerHTML = '';
 		for (let i = 0; i < data.list.length; i+=8) {
 			const newData = data.list[i];
-			var iconIndex = data.weather[0].icon;
-			
-
 			console.log(newData);
-			makeForcastCard(newData,iconIndex);
+			makeForcastCard(newData);
 		}
 console.log(data)
 	})	
 }
 
-function makeForcastCard(newData,iconIndex){
+function makeForcastCard(newData){
 	var fiveDayForcast = document.getElementById('five-day-forecast');
 	var newElement1Div = document.createElement('div');
 	newElement1Div.setAttribute('class','col-3 col-md-2');
@@ -83,10 +80,9 @@ function makeForcastCard(newData,iconIndex){
 	var newElementH5 = document.createElement('h5');
 	newElementH5.setAttribute('class','card-title');
 	newElementH5.textContent = 'Date:' + newData.dt_txt;
-	var elementIcon = 'https://openweathermap.org/img/w/'+ iconIndex +'.png';
-	var iconImg = document.createElement('img');
-	iconImg.setAttribute('src', iconIndex);
-	iconImg.innerHTML = elementIcon;
+	// var iconImg = document.createElement('img');
+	// iconImg.setAttribute('src', iconIndex);
+	// iconImg.innerHTML = elementIcon;
 	var newElementP1 = document.createElement('p');
 	newElementP1.setAttribute('class','card-text');
 	newElementP1.textContent = 'Temperature:' + newData.main.temp +'°F';
@@ -96,7 +92,7 @@ function makeForcastCard(newData,iconIndex){
 	
 	
 	newElement2Div.appendChild(newElementH5);
-	newElement2Div.appendChild(iconImg);
+	// newElement2Div.appendChild(iconImg);
 	newElement2Div.appendChild(newElementP1);
 	newElement2Div.appendChild(newElementP2)
 
