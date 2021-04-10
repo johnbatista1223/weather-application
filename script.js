@@ -64,20 +64,20 @@ console.log(data)
 }
 
 function makeForcastCard(newData){
-	var fiveDayForcast = document.getElementById('five-day-forecast');
 	var newElement1Div = document.createElement('div');
 	newElement1Div.setAttribute('class','col-3 col-md-2');
 	var newElement2Div = document.createElement('div');
 	newElement2Div.setAttribute('class','card');
 	var newElementH5 = document.createElement('h5');
 	newElementH5.setAttribute('class','card-title');
-	newElementH5.textContent = 'date:' + newData.dt_txt;
+	newElementH5.textContent = 'Date:' + newData.dt_txt;
 	var newElementP1 = document.createElement('p');
 	newElementP1.setAttribute('class','card-text');
-	newElementP1.textContent = 'temperature:' + newData.main.temp +'°F';
+	newElementP1.textContent = 'Temperature:' + newData.main.temp +'°F';
 	var newElementP2 = document.createElement('p');
 	newElementP2.setAttribute('class','card-text');
-	newElementP2.textContent = 'humidity:' + newData.main.humidity + '%';
+	newElementP2.textContent = 'Humidity:' + newData.main.humidity + '%';
+	
 
 	newElement2Div.appendChild(newElementH5);
 	newElement2Div.appendChild(newElementP1);
@@ -85,6 +85,7 @@ function makeForcastCard(newData){
 
 	newElement1Div.appendChild(newElement2Div);
 fiveDayForcast.appendChild(newElement1Div);
+
 
 }
 
@@ -102,16 +103,18 @@ function displayCity(){
 
  function getUvIndex(long,latitude){
 
-	 fetch('https://api.openweathermap.org/data/2.5/onecall?lat='+long+'&'+latitude+'&appid=63da63bc31a4354e809cc481ffd9df64')
+	 fetch('https://api.openweathermap.org/data/2.5/onecall?lat='+latitude+'&lon='+long+'&exclude={part}&appid=63da63bc31a4354e809cc481ffd9df64')
   .then(response => response.json())
   .then(data => {
+		var dataUvElement = data.current.uvi;
+		var uvElement = document.querySelector('.uv-index')
+		var uvSpan = document.createElement('span');
+		uvSpan.setAttribute('id', 'uvSpan-el');
+		uvSpan.textContent = dataUvElement;
+		uvElement.appendChild(uvSpan);
+
 		console.log(data)
 	});
-
-
-	 
-
-
 }
 
 
