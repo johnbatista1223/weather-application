@@ -19,25 +19,32 @@ var uvIndex = document.querySelector('#uv-index');
 	fetch('https://api.openweathermap.org/data/2.5/weather?q='+inputBox.value+'&units=imperial&appid=63da63bc31a4354e809cc481ffd9df64')
 	.then(response => response.json())
 	.then(data => 	{
+		console.log(data)
+		var weatherIcon = data.weather[0].icon;
+		console.log(weatherIcon)
 		var tempData = data.main.temp;
 		var tempEl = document.querySelector('.Temperature')
+		tempEl.innerHTML = '';
 	 var tempSpan = document.createElement('SPAN');
 	 tempSpan.setAttribute('id', 'temp-span');
-	 tempSpan.innerHTML = tempData + '°F';
+	 tempSpan.innerHTML = "Temperature: " + tempData + "°F";
 	 tempEl.appendChild(tempSpan);
+	 
 
 	 var humidityData = data.main.humidity;
 		var humidityEl = document.querySelector('.Humidity')
+		humidityEl.innerHTML = '';
 	 var humiditySpan = document.createElement('SPAN');
 	 humiditySpan.setAttribute('id', 'humidity-span');
-	 humiditySpan.textContent = humidityData + '%';
+	 humiditySpan.innerHTML = "humidity: " + humidityData + "%";
 	 humidityEl.appendChild(humiditySpan);
 
 	 var windData = data.wind.speed;
 		var windEl = document.querySelector('.wind-speed')
+		windEl.innerHTML = '';
 	 var windSpan = document.createElement('SPAN');
 	 windSpan.setAttribute('id', 'wind-span');
-	 windSpan.textContent = windData;
+	 windSpan.innerHTML = 'wind-speed: ' + windData +' MPH';
 	 windEl.appendChild(windSpan);
 	 var long = data.coord.lon;
 	 var latitude = data.coord.lat;
@@ -45,9 +52,9 @@ var uvIndex = document.querySelector('#uv-index');
 	//  console.log(latitude);
 	 getForcast()
 	 getUvIndex(long,latitude);
-	 
+	 displayCity(weatherIcon)
 	})
-	displayCity()
+	
 })
 
 function getForcast(){
@@ -87,11 +94,11 @@ function makeForcastCard(newData){
 
 	newElement1Div.appendChild(newElement2Div);
 fiveDayForcast.appendChild(newElement1Div);
-
-
 }
 
-function displayCity(){
+function displayCity(weatherIcon){
+	//fix
+	var weather = 'https://openweathermap.org/img/'+ weatherIcon +'.png'
 	var cityDisplay = document.querySelector('.city-search').value;
 	currentCity.innerText = cityDisplay;
 	var dt = new Date();
@@ -99,7 +106,7 @@ function displayCity(){
 	var newElement = document.querySelector('#current-city');
 	var newSpan = document.createElement('SPAN');
 	newSpan.setAttribute("id", "current-date");
-	newSpan.textContent = newDate;
+	newSpan.innerHTML = ' (' + newDate + ')' + weather;
 	newElement.appendChild(newSpan);
 }
 
@@ -110,9 +117,10 @@ function displayCity(){
   .then(data => {
 		var dataUvElement = data.current.uvi;
 		var uvElement = document.querySelector('.uv-index')
+		uvElement.innerHTML = '';
 		var uvSpan = document.createElement('span');
 		uvSpan.setAttribute('id', 'uvSpan-el');
-		uvSpan.textContent = dataUvElement;
+		uvSpan.innerHTML = 'uv-index:'+ dataUvElement + '';
 		uvElement.appendChild(uvSpan);
 
 		console.log(data)
@@ -128,11 +136,9 @@ function displayCity(){
 
  
   
- 
-//get uv index pass through to get lat and long for url 
-//
- 
+
 
 //local storage
 // elevenPm.val(localStorage.getItem('11-pm'));
-// uv -index url
+// list items
+// icons
