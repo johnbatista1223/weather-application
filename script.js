@@ -13,11 +13,14 @@ var uvIndex = document.querySelector('#uv-index');
  
  
 
-
+ 
 
  
 
 	searchBtn.addEventListener("click", function(event){
+		localStorage.setItem("city", inputBox.value);
+		const city = localStorage.getItem('city');
+		console.log(city)
 	event.preventDefault();
 
 	fetch('https://api.openweathermap.org/data/2.5/weather?q='+inputBox.value+'&units=imperial&appid=63da63bc31a4354e809cc481ffd9df64')
@@ -128,6 +131,16 @@ function displayCity(weatherIcon){
   .then(data => {
 		var dataUvElement = data.current.uvi;
 		var uvElement = document.querySelector('.uv-index')
+		if(dataUvElement === 0 || dataUvElement < 2){
+			uvElement.classList.add('green');
+		}else if(dataUvElement > 3 || dataUvElement < 5 ) {
+    uvElement.classList.add('yellow');
+		}else if(dataUvElement > 6 || dataUvElement < 7){
+			uvElement.classList.add('orange');
+		}
+		else {
+			uvElement.classList.add('red');
+		}
 		uvElement.innerHTML = '';
 		var uvSpan = document.createElement('span');
 		uvSpan.setAttribute('id', 'uvSpan-el');
