@@ -10,6 +10,10 @@ var windSpeed = document.querySelector('#wind-speed');
 var uvIndex = document.querySelector('#uv-index');
  var apiKey ='63da63bc31a4354e809cc481ffd9df64';
 
+ 
+ 
+
+
 
  
 
@@ -135,26 +139,25 @@ function displayCity(weatherIcon){
 
 }
 function listItems(){
-	var listElement = document.querySelector('.list-group list-group-numbered');
+	var listElement = document.querySelector('.custom-list');
 	var inputElement = document.querySelector('.city-search').value;
 	var li = document.createElement('li');
 	li.setAttribute('class', 'list-group-item');
 	li.textContent = inputElement;
 	listElement.appendChild(li);
- 
+	clearBtn.addEventListener('click',function(){
+	 listElement.textContent = '';
+	})
 
 }
 
-
+ 
 
 
 
  
 
- 
+
   
 
 
-//local storage
-// elevenPm.val(localStorage.getItem('11-pm'));
-// list items
