@@ -10,14 +10,8 @@ var windSpeed = document.querySelector('#wind-speed');
 var uvIndex = document.querySelector('#uv-index');
  var apiKey ='63da63bc31a4354e809cc481ffd9df64';
 
- 
- 
-
- 
-
- 
-
 	searchBtn.addEventListener("click", function(event){
+		//local storage storing info of input
 		localStorage.setItem("city", inputBox.value);
 		const city = localStorage.getItem('city');
 		console.log(city)
@@ -79,7 +73,7 @@ function getForcast(){
 console.log(data)
 	})	
 }
-
+// displaying 5 day forecast
 function makeForcastCard(newData,iconIndex){
 	var fiveDayForcast = document.getElementById('five-day-forecast');
 	var newElement1Div = document.createElement('div');
@@ -108,7 +102,7 @@ function makeForcastCard(newData,iconIndex){
 	newElement1Div.appendChild(newElement2Div);
 	fiveDayForcast.appendChild(newElement1Div);
 }
-
+//displaying city date and icons
 function displayCity(weatherIcon){
 
 	var weather = 'https://openweathermap.org/img/w/'+ weatherIcon +'.png';
@@ -131,11 +125,18 @@ function displayCity(weatherIcon){
   .then(data => {
 		var dataUvElement = data.current.uvi;
 		var uvElement = document.querySelector('.uv-index')
-		if(dataUvElement === 0 || dataUvElement < 2){
+		console.log(uvElement);
+		if(dataUvElement == 0 || dataUvElement <= 2){
+			uvElement.classList.remove('yellow');
+			uvElement.classList.remove('orange');
 			uvElement.classList.add('green');
 		}else if(dataUvElement > 3 || dataUvElement < 5 ) {
+			uvElement.classList.remove('orange');
+			uvElement.classList.remove('green');
     uvElement.classList.add('yellow');
 		}else if(dataUvElement > 6 || dataUvElement < 7){
+			uvElement.classList.remove('green');
+			uvElement.classList.remove('yellow');
 			uvElement.classList.add('orange');
 		}
 		else {
